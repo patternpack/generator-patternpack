@@ -1,0 +1,16 @@
+{
+  "name": "<%= name %>",
+  "description": "<%= description %>",
+  "version": "0.0.1",
+  "ignore": [
+    "src",
+    "gruntfile.js",
+    "package.json",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "main": "dist/<%= name %>.css"
+}

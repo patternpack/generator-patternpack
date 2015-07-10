@@ -1,0 +1,11 @@
+{
+  "name": "<%= name %>",
+  "description": "<%= description %>",
+  "version": "0.0.1",
+  "readme": "readme.md",
+  "devDependencies": {
+    "generator-patternpack": "latest",
+    "grunt": "latest",
+    "patternpack": "latest"
+  }
+}
