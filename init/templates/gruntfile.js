@@ -1,11 +1,6 @@
 module.exports = function (grunt) {
-  "use strict";
-
   grunt.initConfig({
     patternpack: {
-      options: {
-        assets: "./src/assets"
-      },
       run: {},
       build: {},
       release: {}
