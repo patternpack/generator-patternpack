@@ -34,6 +34,15 @@ function generatorPatternPack() {
     };
 
     generator.fs.copyTpl(generator.templatePath("**/*"), generator.destinationPath(), options);
+    generator.fs.move(generator.destinationPath("_eslintrc"), generator.destinationPath(".eslintrc"));
+    generator.fs.move(generator.destinationPath("_gitignore"), generator.destinationPath(".gitignore"));
+    generator.fs.move(generator.destinationPath("_npmignore"), generator.destinationPath(".npmignore"));
+    generator.fs.move(generator.destinationPath("dist/_gitkeep"), generator.destinationPath("dist/.gitkeep"));
+    generator.fs.move(generator.destinationPath("src/assets/css/_gitkeep"), generator.destinationPath("src/assets/css/.gitkeep"));
+    generator.fs.move(generator.destinationPath("src/assets/images/_gitkeep"), generator.destinationPath("src/assets/images/.gitkeep"));
+    generator.fs.move(generator.destinationPath("src/assets/js/_gitkeep"), generator.destinationPath("src/assets/js/.gitkeep"));
+    generator.fs.move(generator.destinationPath("src/assets/less/_gitkeep"), generator.destinationPath("src/assets/less/.gitkeep"));
+  }
   }
 
   return {
