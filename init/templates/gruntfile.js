@@ -1,6 +1,4 @@
 module.exports = function (grunt) {
-  "use strict";
-
   grunt.initConfig({
     patternpack: {
       run: {},
