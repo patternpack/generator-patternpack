@@ -43,12 +43,16 @@ function generatorPatternPack() {
     generator.fs.move(generator.destinationPath("src/assets/js/_gitkeep"), generator.destinationPath("src/assets/js/.gitkeep"));
     generator.fs.move(generator.destinationPath("src/assets/less/_gitkeep"), generator.destinationPath("src/assets/less/.gitkeep"));
   }
+
+  function install() {
+    generator.npmInstall();
   }
 
   return {
     constructor: constructor,
     promptForDescription: promptForDescription,
-    create: create
+    create: create,
+    install: install
   };
 }
 
