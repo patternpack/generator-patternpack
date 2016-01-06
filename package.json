@@ -1,6 +1,6 @@
 {
   "name": "generator-patternpack",
-  "version": "0.0.1-alpha.1",
+  "version": "0.9.0",
   "description": "PatternPack yeoman generators to make creating a pattern library easy.",
   "dependencies": {
     "lodash": "latest",
@@ -26,6 +26,7 @@
     "pattern-library",
     "patternlibrary",
     "patternpack",
+    "yeoman generator"
     "yeoman-generator"
   ]
 }
