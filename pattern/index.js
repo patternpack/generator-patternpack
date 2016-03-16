@@ -46,7 +46,8 @@ function generatorPattern() {
     };
     var destinationPath = "src/" + generator.options.hierarchy + "/" + options.name;
 
-    generator.fs.copyTpl(generator.templatePath("**/*"), generator.destinationPath(destinationPath), options);
+    generator.fs.copyTpl(generator.templatePath("pattern.md"), generator.destinationPath(destinationPath + ".md"), options);
+    generator.fs.copyTpl(generator.templatePath("pattern.scss"), generator.destinationPath(destinationPath + ".scss"), options);
   }
 
   return {
