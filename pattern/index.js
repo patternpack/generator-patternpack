@@ -44,7 +44,7 @@ function generatorPattern() {
       name: _.kebabCase(generator.options.name),
       title: _.startCase(generator.options.name)
     };
-    var destinationPath = generator.options.hierarchy + "/" + options.name;
+    var destinationPath = "src/" + generator.options.hierarchy + "/" + options.name;
 
     generator.fs.copyTpl(generator.templatePath("**/*"), generator.destinationPath(destinationPath), options);
   }
