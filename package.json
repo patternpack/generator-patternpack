@@ -3,9 +3,8 @@
   "version": "0.9.1",
   "description": "PatternPack yeoman generators to make creating a pattern library easy.",
   "dependencies": {
-    "lodash": "^3.10.1",
-    "patternpack": "^1.0.4",
-    "yeoman-generator": "^0.22.2"
+    "lodash": "^4.6.1",
+    "yeoman-generator": "^0.22.5"
   },
   "files": [
     "init",
