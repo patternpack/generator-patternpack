@@ -7,17 +7,40 @@ function generatorPattern() {
   var generator;
 
   function constructor() {
-    generators.NamedBase.apply(this, arguments);
+    generators.Base.apply(this, arguments);
     generator = generator || this;
-    setNameAndHeirarchy();
+    generator.argument('name', { required: false });
   }
 
   function setNameAndHeirarchy() {
+    if (!generator.name) {
+      return;
+    }
+
     var location = _.lastIndexOf(generator.name, "/");
     generator.options.name = generator.name.substring(location + 1);
     if (location >= 0) {
       generator.options.hierarchy = generator.name.substring(0, location);
     }
+  }
+
+  function promptForName() {
+    if (generator.name) {
+      setNameAndHeirarchy();
+      return;
+    }
+
+    var done = generator.async();
+    var promptOptions = {
+      type: "input",
+      name: "name",
+      message: "What is the name of the pattern"
+    };
+
+    generator.prompt(promptOptions, function (response) {
+      generator.options.name = response.name;
+      done();
+    });
   }
 
   function promptForHierarchy() {
@@ -52,9 +75,10 @@ function generatorPattern() {
 
   return {
     constructor: constructor,
+    promptForName: promptForName,
     promptForHierarchy: promptForHierarchy,
     create: create
   };
 }
 
-module.exports = generators.NamedBase.extend(generatorPattern());
+module.exports = generators.Base.extend(generatorPattern());

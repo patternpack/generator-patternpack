@@ -7,9 +7,28 @@ function generatorPatternPack() {
   var generator;
 
   function constructor() {
-    generators.NamedBase.apply(this, arguments);
+    generators.Base.apply(this, arguments);
     generator = generator || this;
-    generator.options.name = generator.name;
+    generator.argument('name', { required: false });
+  }
+
+  function promptForName() {
+    if (generator.name) {
+      generator.options.name = generator.name;
+      return;
+    }
+
+    var done = generator.async();
+    var promptOptions = {
+      type: "input",
+      name: "name",
+      message: "What is the name of the pattern library"
+    };
+
+    generator.prompt(promptOptions, function (response) {
+      generator.options.name = response.name;
+      done();
+    });
   }
 
   function promptForDescription() {
@@ -49,10 +68,11 @@ function generatorPatternPack() {
 
   return {
     constructor: constructor,
+    promptForName: promptForName,
     promptForDescription: promptForDescription,
     create: create,
     install: install
   };
 }
 
-module.exports = generators.NamedBase.extend(generatorPatternPack());
+module.exports = generators.Base.extend(generatorPatternPack());
