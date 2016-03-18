@@ -7,17 +7,40 @@ function generatorPattern() {
   var generator;
 
   function constructor() {
-    generators.NamedBase.apply(this, arguments);
+    generators.Base.apply(this, arguments);
     generator = generator || this;
-    setNameAndHeirarchy();
+    generator.argument('name', { required: false });
   }
 
   function setNameAndHeirarchy() {
+    if (!generator.name) {
+      return;
+    }
+
     var location = _.lastIndexOf(generator.name, "/");
     generator.options.name = generator.name.substring(location + 1);
     if (location >= 0) {
       generator.options.hierarchy = generator.name.substring(0, location);
     }
+  }
+
+  function promptForName() {
+    if (generator.name) {
+      setNameAndHeirarchy();
+      return;
+    }
+
+    var done = generator.async();
+    var promptOptions = {
+      type: "input",
+      name: "name",
+      message: "What is the name of the pattern"
+    };
+
+    generator.prompt(promptOptions, function (response) {
+      generator.options.name = response.name;
+      done();
+    });
   }
 
   function promptForHierarchy() {
@@ -46,14 +69,16 @@ function generatorPattern() {
     };
     var destinationPath = "src/" + generator.options.hierarchy + "/" + options.name;
 
-    generator.fs.copyTpl(generator.templatePath("**/*"), generator.destinationPath(destinationPath), options);
+    generator.fs.copyTpl(generator.templatePath("pattern.md"), generator.destinationPath(destinationPath + ".md"), options);
+    generator.fs.copyTpl(generator.templatePath("pattern.scss"), generator.destinationPath(destinationPath + ".scss"), options);
   }
 
   return {
     constructor: constructor,
+    promptForName: promptForName,
     promptForHierarchy: promptForHierarchy,
     create: create
   };
 }
 
-module.exports = generators.NamedBase.extend(generatorPattern());
+module.exports = generators.Base.extend(generatorPattern());
